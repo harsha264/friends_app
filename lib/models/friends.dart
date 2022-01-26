@@ -1,10 +1,12 @@
 class Friend {
+  int? id;
   String? firstName;
   String? lastName;
   String? emailId;
   String? mobileNumber;
 
   Friend({
+    this.id,
     this.firstName,
     this.lastName,
     this.emailId,
@@ -12,6 +14,7 @@ class Friend {
   });
 
   Friend.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     firstName = json['firstName'];
     lastName = json['lastName'];
     emailId = json['emailId'];

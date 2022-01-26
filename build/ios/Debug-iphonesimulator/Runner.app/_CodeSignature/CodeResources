@@ -110,7 +110,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		0xNvNwmux7C5X2ekW/0MuVbeARA=
+		gUZ1LhMJQ/2IVp3Gzex6I9Mo6N8=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -118,7 +118,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		su1R27gmqtflM85XbrEcBCQjmuk=
+		SNSuplqUXJj1xxnLgU7PYLs0ReI=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -130,7 +130,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		1URINyjYihEGjuLebq9+b0VGm+U=
+		2+t/gO0zLRiRVniuSl0QETMRi6c=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/friends_icon.svg</key>
 		<data>
@@ -162,7 +162,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		DianBGJBea6et5g/aTLd1Wd+ljE=
+		Nm/AuLvzHkMPabkCjIFfP6P/9Xk=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -605,11 +605,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0xNvNwmux7C5X2ekW/0MuVbeARA=
+			gUZ1LhMJQ/2IVp3Gzex6I9Mo6N8=
 			</data>
 			<key>hash2</key>
 			<data>
-			w59BcfbtgUTv4o6HKrl9NUURzuqbCBsq9jsIkp8HAw0=
+			yMa48+UIz7Cx6mWY/90m4uT6WkBPlUYMvqlWQNXXCP8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -627,11 +627,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			su1R27gmqtflM85XbrEcBCQjmuk=
+			SNSuplqUXJj1xxnLgU7PYLs0ReI=
 			</data>
 			<key>hash2</key>
 			<data>
-			p/UuTWw7LeeX3UfsYdo2+84lwAzCqBu0DRwMMmIl2tY=
+			1xajbDJcyPy3weFWuzNHqc03axvjmnY+fCWeIW0elKw=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -660,11 +660,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			1URINyjYihEGjuLebq9+b0VGm+U=
+			2+t/gO0zLRiRVniuSl0QETMRi6c=
 			</data>
 			<key>hash2</key>
 			<data>
-			5utCQV+w/zSkz1S5c4yiOqpJc4ZuvHhno0m6i1/qERk=
+			ig7O1xcdtJ6jk1k0jmyiGqtkKuvmJPmrWkSiWPBF8dk=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/friends_icon.svg</key>
@@ -748,11 +748,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			DianBGJBea6et5g/aTLd1Wd+ljE=
+			Nm/AuLvzHkMPabkCjIFfP6P/9Xk=
 			</data>
 			<key>hash2</key>
 			<data>
-			WMr0DiEV3JiQFeNjCFFaZY10e7chTB0BEaFt6DzLh6Y=
+			K/3+J8nmqjjwliBQV3/20XvJl6vvga7sdr0l8UkjRmc=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

@@ -18,6 +18,7 @@ class DatabaseHelper {
   Future<Database> _initDB() async{
     Directory documents = await getApplicationDocumentsDirectory();
     String path = join(documents.path, 'friends.db');
+    print(path);
     return await openDatabase(
       path,
       version: 1,
@@ -53,6 +54,17 @@ class DatabaseHelper {
     return friendsList;
   }
 
+  Future<List<Friend>> getFriendsDetails(String mobileNumber) async {
+    Database db = await instance.database;
+    var friends = await db.rawQuery("Select * from friends WHERE mobileNumber = '$mobileNumber'");
+    List<Friend> friendsList = friends.isNotEmpty
+        ? friends.map((c) => Friend.fromJson(c)).toList()
+        : [];
+    return friendsList;
+  }
+
+  
+
   Future<int> addUser(User user) async {
     Database db = await instance.database;
     return await db.insert('users', user.toJson());
@@ -61,5 +73,15 @@ class DatabaseHelper {
   Future<int> addFriend(Friend friend) async {
     Database db = await instance.database;
     return await db.insert('friends', friend.toJson());
+  }
+
+  Future<int> updateFriend(Friend friend, int? id) async {
+    Database db = await instance.database;
+    return await db.update('friends', friend.toJson(),where: "id = ?",whereArgs: [id]);
+  }
+
+  Future<int> deleteFriend(String mobileNumber) async {
+    Database db = await instance.database;
+    return await db.delete('friends', where: "mobileNumber = ?",whereArgs: [mobileNumber]);
   }
 }
