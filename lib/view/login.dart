@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:friends_app/database/database.dart';
+import 'package:friends_app/main.dart';
 import 'package:friends_app/view/homescreen.dart';
 import 'package:friends_app/view/register.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget{
   const Login({Key? key}) : super(key: key);
@@ -21,6 +23,8 @@ class _LoginState extends State<Login> {
   checkLogin(mobileNumber, password) async{
     var users = await DatabaseHelper.instance.getUsers(mobileNumber,password);
     if(users.isNotEmpty){
+      sharedPreferences = await SharedPreferences.getInstance();
+      sharedPreferences?.setString("user", "loggedIn");
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()));
     }else{
       showInSnackBar('Invalid Credentials');
@@ -47,8 +51,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
           Center(
             child: SvgPicture.asset('assets/friends_icon.svg'),
@@ -78,104 +81,106 @@ class _LoginState extends State<Login> {
               ],
             )
           ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(left:10, right:10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(),
-                  ),
-                  child: TextFormField(
-                    onChanged: (v){
-                      setState(() {
-                        mobileNumber = v;
-                      });
-                    },
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Mobile Number',
-                      hintStyle: TextStyle(
-                        color: Colors.grey
-                      )
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(left:10, right:10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(),
-                  ),
-                  child: TextFormField(
-                    onChanged: (v){
-                      setState(() {
-                        password = v;
-                      });
-                    },
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Password',
-                      hintStyle: TextStyle(
-                        color: Colors.grey
-                      )
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 100,
-                ),
-                GestureDetector(
-                  onTap: (){
-                    checkLogin(mobileNumber,password);
-                  },
-                  child: Container(
-                    height: 50,
-                    width: 100,
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  Container(
                     padding: const EdgeInsets.only(left:10, right:10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.transparent),
-                      color: Colors.purple
+                      border: Border.all(),
                     ),
-                    child: const Center(
-                      child: Text('LOGIN',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700
-                        ),
+                    child: TextFormField(
+                      onChanged: (v){
+                        setState(() {
+                          mobileNumber = v;
+                        });
+                      },
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Mobile Number',
+                        hintStyle: TextStyle(
+                          color: Colors.grey
+                        )
                       ),
-                    )
+                    ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const Register()));
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RichText(
-                      text: const TextSpan(
-                        text: 'Don\'t have an account? ',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(text: 'SignUp', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.purple,decoration: TextDecoration.underline,)),
-                        ],
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(left:10, right:10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(),
+                    ),
+                    child: TextFormField(
+                      onChanged: (v){
+                        setState(() {
+                          password = v;
+                        });
+                      },
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Password',
+                        hintStyle: TextStyle(
+                          color: Colors.grey
+                        )
                       ),
-                    )
+                    ),
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      checkLogin(mobileNumber,password);
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 100,
+                      padding: const EdgeInsets.only(left:10, right:10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.transparent),
+                        color: Colors.purple
+                      ),
+                      child: const Center(
+                        child: Text('LOGIN',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700
+                          ),
+                        ),
+                      )
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const Register()));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RichText(
+                        text: const TextSpan(
+                          text: 'Don\'t have an account? ',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(text: 'SignUp', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.purple,decoration: TextDecoration.underline,)),
+                          ],
+                        ),
+                      )
+                    ),
+                  ),
+                ],
+              ),
             ),
           )
         ],

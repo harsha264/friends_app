@@ -52,8 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void navigationPage() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    
-    if (sharedPreferences?.getString('userLoggedIn') == null || sharedPreferences?.getString('userLoggedIn') == "") {
+    if (sharedPreferences?.getString('user') == null || sharedPreferences?.getString('user') == "loggedOut") {
       Navigator.of(context).pushReplacementNamed('/login');
     } else {
       Navigator.of(context).pushReplacementNamed('/home');

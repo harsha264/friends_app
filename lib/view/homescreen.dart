@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:friends_app/database/database.dart';
 import 'package:friends_app/models/friends.dart';
 import 'package:friends_app/view/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget{
   const HomeScreen({Key? key}) : super(key: key);
@@ -437,77 +438,86 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  _logOut() async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString("user", "loggedIn");
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const Login()));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const Login()));
-          },
-          icon: const Icon(Icons.power_settings_new_sharp),
-        ),
-        title: const Text('Friends'),
-        elevation: 0,
-        centerTitle: true,
-        actions: [
-          IconButton(
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          leading: IconButton(
             onPressed: (){
-              
+              _logOut();
             },
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.power_settings_new_sharp),
           ),
-        ],
-      ),
-      body: Column(
-        mainAxisAlignment: friendsList.length == 0 ? MainAxisAlignment.center : MainAxisAlignment.start,
-        children: [
-          Center(
-            child: 
-            friendsList.length == 0 ?
-            const Text('No Friends'):
-            ListView(
-              shrinkWrap: true,
-              children: List.generate(friendsList.length, (index){
-                return Container(
-                  padding: const EdgeInsets.all(10),
-                  height: MediaQuery.of(context).size.height*0.065,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(friendsList[index].firstName),
-                      Row(
-                        children: [
-                          IconButton(
-                            onPressed: (){
-                              doEdit(friendsList[index].mobileNumber);
-                            },
-                            icon: const Icon(Icons.edit),
-                            color: Colors.grey,
-                          ),
-                          IconButton(
-                            onPressed: (){
-                              doDelete(friendsList[index].mobileNumber);
-                            },
-                            icon: const Icon(Icons.delete),
-                            color: Colors.redAccent,
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              }),
-            )
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          addFriendBottomSheet();
-        },
-        child: const Icon(Icons.person_add_alt),
+          title: const Text('Friends'),
+          elevation: 0,
+          centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: (){
+                
+              },
+              icon: const Icon(Icons.search),
+            ),
+          ],
+        ),
+        body: Column(
+          mainAxisAlignment: friendsList.length == 0 ? MainAxisAlignment.center : MainAxisAlignment.start,
+          children: [
+            Center(
+              child: 
+              friendsList.length == 0 ?
+              const Text('No Friends'):
+              ListView(
+                shrinkWrap: true,
+                children: List.generate(friendsList.length, (index){
+                  return Container(
+                    padding: const EdgeInsets.all(10),
+                    height: MediaQuery.of(context).size.height*0.065,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(friendsList[index].firstName),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: (){
+                                doEdit(friendsList[index].mobileNumber);
+                              },
+                              icon: const Icon(Icons.edit),
+                              color: Colors.grey,
+                            ),
+                            IconButton(
+                              onPressed: (){
+                                doDelete(friendsList[index].mobileNumber);
+                              },
+                              icon: const Icon(Icons.delete),
+                              color: Colors.redAccent,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+              )
+            ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            addFriendBottomSheet();
+          },
+          child: const Icon(Icons.person_add_alt),
+        ),
       ),
     );
   }
