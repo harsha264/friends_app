@@ -1,4 +1,0 @@
-#Wed Jan 26 20:22:42 IST 2022
-base.0=/Users/harshavardhanballa/personalWorkspace/friends_app/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
